@@ -2,21 +2,25 @@ package com.algo.dp;
 
 public class Fibonacci2 {
     //Top-Down Memoization
-    static Integer[] mem;
-
-    public static void main(String args[]) {
-        int n = 10;
-        mem = new Integer[n];
-        mem[0] = 0;
-        mem[1] = 1;
-        System.out.println(fib(n - 1));
+    public static void main(String[] args) {
+        Fibonacci2 obj = new Fibonacci2();
+        System.out.println(obj.fib(10));
     }
 
-    public static int fib(int n) {
-        if (mem[n] != null) {
-            return mem[n];
+    private int fib(int n) {
+        mem = new Integer[n + 1];
+        return res(n);
+    }
+
+    Integer[] mem;
+
+    private int res(int n) {
+        if (n < 2) {
+            return n;
         }
-        mem[n] = fib(n - 1) + fib(n - 2);
+        if (mem[n] == null) {
+            mem[n] = res(n - 1) + res(n - 2);
+        }
         return mem[n];
     }
 }
